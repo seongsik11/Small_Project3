@@ -8,7 +8,7 @@
 }
 
 .todo-item:hover {
-    background: #e3fafc;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 /* todo-item 에 마우스가 있을때만 .remove 보이기 */

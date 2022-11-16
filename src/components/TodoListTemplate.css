@@ -1,13 +1,22 @@
 .todo-list-template {
-    background: white;
+    position: absolute;
+    top: 62%;
+    left: 50%;
+
+    background: rgba(0, 0, 0, 0.2);
     width: 512px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    margin: 30rem auto 0;
     border-radius: 8px;
+
+
+    transform: translate(-50%, -50%);
 }
 
 @media ( max-width: 2000px ) {
-    .todo-list-template { margin-top: 10rem;}
+    .todo-list-template {
+        top: 67%;
+        left: 50%;
+    }
 }
 
 
@@ -15,15 +24,13 @@
     padding: 2rem;
     font-size: 2.5rem;
     text-align: center;
-    font-weight: 100;
-    background: #92ccff;
+    font-weight: 350;
     color:white;
-    border-radius: 8px 8px 0 0;
 }
 
 .form-wrapper {
     padding: 1rem;
-    border-bottom: 1px solid #92ccff;
+    border-bottom: 1px solid #ffffff;
 }
 
 .todos-wrapper {

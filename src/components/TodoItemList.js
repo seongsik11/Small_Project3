@@ -24,7 +24,7 @@ class TodoItemList extends Component {
         );
 
         return (
-            <div>
+            <div style={{color:"#f1f1f1"}}>
                 {todoList}
             </div>
         );

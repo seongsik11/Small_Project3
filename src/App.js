@@ -1,9 +1,22 @@
 import TodoListTemplate from "./components/TodoListTemplate";
 import Form from "./components/Form";
 import TodoItemList from "./components/TodoItemList";
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import Weather from "./components/Weather";
 import styled from "styled-components";
+import "./App.css";
+import Img1 from './SVG/hd-wallpaper-g84ec5a380_1920_adobe_express.svg';
+import Img2 from './SVG/panoramic-g9d542d7d1_1920.jpg';
+import Img3 from './SVG/nature-g07fba8fd6_1920.jpg';
+import Clock from "./components/Clock/Clock";
+
+
+
+    const backgroundArr = [Img1, Img2, Img3];
+
+    const randomIndex = Math.floor(Math.random() * backgroundArr.length);
+
+    const backgroundImg = backgroundArr[randomIndex];
 
 class App extends Component {
 
@@ -26,15 +39,20 @@ class App extends Component {
 
     handleCreate = () => {
         const {input, todos} = this.state;
-        this.setState({
-            input: '', // 인풋 비우고
-            // concat 을 사용하여 배열에 추가
-            todos: todos.concat({
-                id: this.id++,
-                text: input,
-                checked: false
-            })
-        });
+
+        if (input !== "") {
+            this.setState({
+                input: '', // 인풋 비우고
+                // concat 을 사용하여 배열에 추가
+                todos: todos.concat({
+                    id: this.id++,
+                    text: input,
+                    checked: false
+                })
+            });
+        } else {
+            window.alert("Please enter the content")
+        }
     }
 
     handleKeyPress = (e) => {
@@ -83,6 +101,15 @@ class App extends Component {
 
         return (
             <div>
+                <img src={backgroundImg} style={{opacity:"0.7"}}/>
+
+                <ClockBox>
+                    <Clock/>
+                </ClockBox>
+
+                <WeatherBox>
+                    <Weather/>
+                </WeatherBox>
                 <TodoListTemplate form={(
                     <Form
                         value={input}
@@ -93,17 +120,38 @@ class App extends Component {
                 )}>
                     <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove}/>
                 </TodoListTemplate>
-                <WeatherBox>
-                    <Weather/>
-                </WeatherBox>
-
             </div>
         );
     }
 }
 
 const WeatherBox = styled.div`
-    position: relative;
+    position: absolute;
+    height:81px;
+    top: 143%;
+    right: 1%;
+    
+    
+`;
+
+const ClockBox = styled.div`
+    position:absolute;
+    top:40%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
+    
+    width: 511px;
+    height: 250px;
+    line-height: 280px;
+    
+    text-align: center;
+    
+    @media screen and (max-width: 2000px) {
+        top:30%;
+        left: 50%; 
+    }
+}
 `;
 
 export default App;
