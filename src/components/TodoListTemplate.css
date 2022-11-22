@@ -3,8 +3,9 @@
     top: 62%;
     left: 50%;
 
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     width: 512px;
+    height: 335px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 8px;
 
@@ -34,6 +35,8 @@
 }
 
 .todos-wrapper {
+    height: 156px;
     min-height:  5rem;
+    overflow-y: auto;
 }
 

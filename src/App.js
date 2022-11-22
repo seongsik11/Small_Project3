@@ -9,6 +9,7 @@ import Img1 from './SVG/hd-wallpaper-g84ec5a380_1920_adobe_express.svg';
 import Img2 from './SVG/panoramic-g9d542d7d1_1920.jpg';
 import Img3 from './SVG/nature-g07fba8fd6_1920.jpg';
 import Clock from "./components/Clock/Clock";
+// import Tetris from "./components/TetrisGame/components/Testris";
 
 
 
@@ -25,9 +26,9 @@ class App extends Component {
     state = {
         input: '',
         todos: [
-            {id: 0, text: '일찍 일어나기', checked: false},
-            {id: 1, text: '공부하기', checked: false},
-            {id: 2, text: '잠자기', checked: false}
+            {id: 0, text: '일찍 일어나기 -필수', checked: false},
+            {id: 1, text: '공부하기 - 필수', checked: false},
+            {id: 2, text: '잠자기 - 필수', checked: false}
         ]
     }
 
@@ -110,16 +111,17 @@ class App extends Component {
                 <WeatherBox>
                     <Weather/>
                 </WeatherBox>
-                <TodoListTemplate form={(
-                    <Form
-                        value={input}
-                        onKeyPress={handleKeyPress}
-                        onChange={handleChange}
-                        onCreate={handleCreate}
-                    />
-                )}>
-                    <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove}/>
-                </TodoListTemplate>
+
+                    <TodoListTemplate form={(
+                        <Form
+                            value={input}
+                            onKeyPress={handleKeyPress}
+                            onChange={handleChange}
+                            onCreate={handleCreate}
+                        />
+                    )}>
+                        <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove}/>
+                    </TodoListTemplate>
             </div>
         );
     }
@@ -153,5 +155,6 @@ const ClockBox = styled.div`
     }
 }
 `;
+
 
 export default App;
