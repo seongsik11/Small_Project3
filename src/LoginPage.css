@@ -1,0 +1,32 @@
+.form-appear {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.form-appear-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.form-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.form-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.form-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 300ms, transform 300ms;
+}

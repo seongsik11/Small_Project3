@@ -1,35 +1,27 @@
-import React, {Component} from "react";
+// TodoItemList 컴포넌트에서 전체 토글과 전체 삭제를 추가
 import TodoItem from "./TodoItem";
+import {Component} from "react";
 
 class TodoItemList extends Component {
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.props.todos !== nextProps.todos;
-    }
-
     render() {
-        const {todos, onToggle, onRemove} = this.props;
-
-        const todoList = todos&&todos.map(
-            ({id, text, checked}) => (
-                <TodoItem
-                    id={id}
-                    text={text}
-                    checked={checked}
-                    onToggle={onToggle}
-                    onRemove={onRemove}
-                    key={id}
-                />
-            )
-        );
+        const { todos, onToggle, onRemove } = this.props;
 
         return (
-            <div style={{color:"#f1f1f1"}}>
-                {todoList}
+            <div>
+                {todos.map((todo) => (
+                    <TodoItem
+                        key={todo.id}
+                        text={todo.text}
+                        checked={todo.checked}
+                        id={todo.id}
+                        onToggle={onToggle}
+                        onRemove={onRemove}
+                    />
+                ))}
             </div>
         );
     }
-
 }
 
-export default TodoItemList
+export default TodoItemList;

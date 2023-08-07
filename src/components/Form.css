@@ -11,41 +11,44 @@
 }
 
 .form input:hover {
-    border-radius: 8px 8px 0 0;
+    border-radius: 3px;
     border-bottom: 3px solid #ffffff;
+    transition:  border-bottom, background 0.3s ease-in-out;
 }
 
 .form input:focus {
-    border-bottom: 3px solid #ffffff;
-    border-radius: 8px 8px 0 0;
+    border-radius: 3px;
+    border-bottom: none;
 }
 
 .create-button {
     padding: 0.5rem 1rem;
     margin-left: 1rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.35);
     border-radius: 3px;
-    color: #f1f1f1;
+    color: #f0f0f0;
     font-weight: 600;
     cursor: pointer;
 }
 
 .create-button:hover {
     background: rgba(0, 0, 0, 0.25);
+    transition: background 0.3s ease-in-out;
     color: white;
 }
 
 input {
-    background: rgba(0, 0, 0, 0);
+    background: rgba(12, 12, 12, 0);
     color: #f1f1f1;
 }
 
 input:hover {
-    background: rgba(12, 12, 12, 0.3);
+    background: rgba(12, 12, 12, 0.2);
+
 }
 
 input:focus {
-    background: rgba(12, 12, 12, 0.3);
+    background: rgba(12, 12, 12, 0.2);
 }
 
 

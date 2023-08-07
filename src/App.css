@@ -1,4 +1,6 @@
 .App {
+    width: 100%;
+    height: 100%;
 }
 
 img {
@@ -49,4 +51,45 @@ img {
     to {
         transform: rotate(360deg);
     }
+}
+
+.pointer {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    transform: translate(-50%, -50%) scale(0.25);
+    pointer-events: none;
+    animation: pointerClick 1s ease-out;
+}
+
+@keyframes pointerClick {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.4;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animated-background {
+    /* 해당 요소의 스타일 설정 */
 }

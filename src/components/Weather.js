@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 const WEATHER_API_KEY = "2bee39b50204646ade284a30dd02f6c9";
 const cityName = 'Seoul';
@@ -11,6 +11,7 @@ function Weather() {
     const [icon, setIcon] = useState("");
     const [main, setMain] = useState("");
     const [temp, setTemp] = useState("");
+    const weatherTextRef = useRef(null);
 
     const weatherInfo = async () => {
         await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${WEATHER_API_KEY}`)
@@ -36,34 +37,40 @@ function Weather() {
             weatherInfo()
     }, [])
 
+    useEffect(() => {
+        const weatherText = document.getElementById("weatherText");
+        weatherText.style.opacity = 1;
+    }, [weather]);
+
+
     return (
         <WeatherText>
-            <Text>Region: </Text> {weather.name}
-            {/*<div style={{height:"50px", lineHeight:"50px"}}>*/}
-            {/*   <img src={imgSrc}/>*/}
-            {/*</div>*/}
-            <Text>Weather: </Text> {main}
-            <Text>temp: </Text> {Math.round(temp - 273.15)}℃
+            <Text id="weatherText" ref={weatherTextRef}>Region: </Text>
+            <Span id="weatherText" ref={weatherTextRef}>{weather.name}</Span>
+            <Text id="weatherText" ref={weatherTextRef}>Weather: </Text>
+            <Span id="weatherText" ref={weatherTextRef}>{main}</Span>
+            <Text id="weatherText" ref={weatherTextRef}>Temp: </Text>
+            <Span id="weatherText" ref={weatherTextRef}>{Math.round(temp - 273.15)}℃</Span>
         </WeatherText>
     );
 }
 
 const WeatherText = styled.div`
     display: flex;
-    flex-direction: wrap;
     flex-wrap: wrap;
- 
-    margin: 10px;
+
+    margin:0;
     padding:5px 5px;
  
     position: absolute;
     top: -32em;
     right: 20px;
-    
-    width: 200px;
+
+    width: 140px;
     height: 81px;
-    
-    font-size: 22px;
+    line-height: 28px;
+
+    font-size: 15px;
     font-weight: bold;
   
     color: white;
@@ -74,25 +81,35 @@ const WeatherText = styled.div`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     
     @media screen and (max-width: 2000px) {
-        margin:0;
-        width: 140px;
-        font-size: 15px;
-        line-height: 28px;
-        
         top: -28.4em;
     }
 `;
 
+const fadeInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const Text = styled.div`
-    width: 90px;
+    margin:0;
+    width: 60px;
     text-align: right;
+    font-size: 15px;
     padding: 0 12px;
+    opacity: 0;
+    animation: ${fadeInLeft} 3s forwards;
     
-     @media screen and (max-width: 2000px) {
-        margin:0;
-        width: 60px;
-        font-size: 15px
-    }
+`;
+
+const Span = styled.span`
+    opacity: 0;
+    animation: ${fadeInLeft} 3s forwards;
 `;
 
 export default Weather;
