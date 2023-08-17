@@ -1,39 +1,74 @@
-import React, {useEffect, useState} from "react";
-import styled from "styled-components";
+import React, {useEffect, useRef, useState} from "react";
+import styled, {keyframes} from "styled-components";
 import moment from "moment";
 
 function Clock() {
+    let timer = null;
 
-    let timer: any = null;
-
-    const [time, setTime] = useState(moment()); // time default 값  설정
+    const [time, setTime] = useState(moment());
+    const timeTextRef = useRef(null);
 
     useEffect(() => {
-        timer = setInterval(() => { // timer 변수에 interval 종료를 위해 저장
-            setTime(moment()); // 현재 시간 세팅
-        }, 1000); // 1000ms = 1초간 반복
+        timer = setInterval(() => {
+            setTime(moment());
+        }, 1000);
 
         return () => {
-            clearInterval(timer); // 함수 unmount 시 clearInterval
+            clearInterval(timer);
         };
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        const timeText = document.getElementById("timeText");
+        timeText.style.opacity = 1;
+    }, [time]);
+
+    const formatTime = (time) => {
+        const formattedTime = time.format("A hh:mm"); // 시간 형식에 AM/PM 추가
+        return formattedTime;
+    };
 
     return (
-        <div>
-            <TimeText>
-                {time.format('hh:mm')}
-            </TimeText>
-        </div>
-    )
+        <ClockWrapper>
+            <TimeText id="timeText" ref={timeTextRef}>{formatTime(time)}</TimeText>
+        </ClockWrapper>
+    );
 }
 
-const TimeText = styled.div`
-    color: #f2f2f2;
-    font-size: 10rem;
-    
-    @media screen and (max-width: 2000px) {
-        font-size: 7rem;
-    }
+
+const ClockWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  padding: 20px;
 `;
+
+const fadeInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const TimeText = styled.div`
+  color: #f0f0f0;
+  font-size: 130px;
+  display: inline-block; /* 영역을 inline-block으로 설정 */
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  opacity: 0;
+  animation: ${fadeInLeft} 1s forwards;
+
+  @media screen and (max-width: 2000px) {
+    font-size: 100px;
+  }
+`;
+
+
 
 export default Clock;

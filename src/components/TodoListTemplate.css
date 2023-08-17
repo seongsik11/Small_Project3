@@ -29,11 +29,6 @@
     color:white;
 }
 
-.form-wrapper {
-    padding: 1rem;
-    border-bottom: 1px solid #ffffff;
-}
-
 .todos-wrapper {
     height: 156px;
     min-height:  5rem;
